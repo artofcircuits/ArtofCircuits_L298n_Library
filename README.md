@@ -5,7 +5,7 @@ This library can be used with L298n Dual H-Bridge Module. The L298N module can b
 
 [![L298N Dual H-Bridge Module](http://artofcircuits.com/wp-content/uploads/2013/10/L298N-module-300x300.jpg)
 
-*L298N module*](http://artofcircuits.com/product/l298n-motor-driver-board)
+*L298N module*] (http://artofcircuits.com/product/l298n-motor-driver-board)
 
 Repository Contents
 -------------------
