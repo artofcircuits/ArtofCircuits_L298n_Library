@@ -19,8 +19,6 @@
 #ifndef ARTOFCIRCUITS_DCMOTOR_H
 #define ARTOFCIRCUITS_DCMOTOR_H
 
-#define _DEBUG_				/* Comment if you want to disable debug serial prints */
-
 // Compatibility for Arduino 1.0
 #if ARDUINO >= 100
     #include "Arduino.h"

@@ -25,7 +25,7 @@
   License along with dcmotor library.  If not, see
   <http://www.gnu.org/licenses/>.
   -------------------------------------------------------------------------*/
-
+#define _DEBUG_		/* Comment if you want to disable debug serial prints */
 #include "artofcircuits_l298n.h"
 
 /**
