@@ -1,0 +1,6 @@
+DcMotor	KEYWORD1
+breaking	KEYWORD1
+disable	KEYWORD1
+forward	KEYWORD1
+backward	KEYWORD1
+
