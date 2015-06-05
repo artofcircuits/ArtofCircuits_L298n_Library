@@ -74,7 +74,6 @@
 // initialize L298n motor driver instances
 L298n dcm1 (DCM1_ENABLE, DCM1_IN1, DCM1_IN2);    // L298n (enable,in1,in2) - left side motors
 L298n dcm2 (DCM2_ENABLE, DCM2_IN1, DCM2_IN2);    // L298n (enable,in1,in2) - right side motors
-unsigned char speed = 127;
 
 SerialCommand sCmd;     // The SerialCommand object
 
@@ -107,8 +106,8 @@ void loop ()
 // Description: move forward
 ///////////////////////////////////////////////////////////////////////////////
 void cmd_forward() {
-  dcm1.forward(speed);    // cc/forward motion possible value of pwm can be 0 - 255
-  dcm2.forward(speed);    // cc/forward motion possible value of pwm can be 0 - 255  
+  dcm1.forward(dcm1.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255
+  dcm2.forward(dcm2.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255  
 }
 
 
@@ -119,8 +118,8 @@ void cmd_forward() {
 // Description: move backward
 ///////////////////////////////////////////////////////////////////////////////
 void cmd_backward() {
-  dcm1.backward(speed);    // cc/forward motion possible value of pwm can be 0 - 255
-  dcm2.backward(speed);    // cc/forward motion possible value of pwm can be 0 - 255  
+  dcm1.backward(dcm1.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255
+  dcm2.backward(dcm2.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255  
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -130,8 +129,8 @@ void cmd_backward() {
 // Description: turn left
 ///////////////////////////////////////////////////////////////////////////////
 void cmd_left() {
-  dcm1.backward(speed);    // cc/forward motion possible value of pwm can be 0 - 255
-  dcm2.forward(speed);    // cc/forward motion possible value of pwm can be 0 - 255  
+  dcm1.backward(dcm1.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255
+  dcm2.forward(dcm2.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255  
 }
 
 
@@ -142,8 +141,8 @@ void cmd_left() {
 // Description: turn right
 ///////////////////////////////////////////////////////////////////////////////
 void cmd_right() {
-  dcm1.forward(speed);    // cc/forward motion possible value of pwm can be 0 - 255
-  dcm2.backward(speed);    // cc/forward motion possible value of pwm can be 0 - 255  
+  dcm1.forward(dcm1.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255
+  dcm2.backward(dcm2.getSpeed());    // cc/forward motion possible value of pwm can be 0 - 255  
 }
 
 
@@ -167,11 +166,13 @@ void cmd_stop() {
 ///////////////////////////////////////////////////////////////////////////////
 void cmd_speed() {
   char *arg;
-  speed;  // global speed register
+  char s;
 
   arg = sCmd.next();
   if (arg != NULL) {
-    speed = atoi(arg);    // Converts a char string to int
+    s = atoi(arg);    // Converts a char string to int
+    dcm1.setSpeed(s);
+    dcm2.setSpeed(s);
   }
   else {
     pSerial.println("NO SPEED?");  // no arguments received

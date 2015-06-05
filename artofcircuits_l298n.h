@@ -36,6 +36,17 @@
  #define DEBUG_PRINTHEX(t,v)
 #endif
 
+// contant for _speed variable
+#define L298N_DEFAULT_SPEED			127	// default speed
+#define L298N_MAX_SPEED				255	// max speed
+#define L298N_MAX_MIN				127	// min speed that still rotates wheel
+
+// constants for reporting status
+#define L298N_DISABLED		0	// stopped or disabled state
+#define L298N_BREAK			1	// stopped but l298n is enabled and break is applied
+#define L298N_FORWARD		2	// forward motion state
+#define L298N_BACKWARD		3	// backward motion state
+
 class L298n {
 
  public:
@@ -47,12 +58,16 @@ class L298n {
   void disable();
   void forward(uint8_t speed);
   void backward(uint8_t speed);
+  void setSpeed(uint8_t speed);
+  uint8_t getSpeed(void);
 
  private:
  uint8_t _enable;
  uint8_t _in1;
  uint8_t _in2;
-
+ uint8_t _status;		// holds l298n module status
+ uint8_t _speed;		// holds pwm value / speed value
+ 
 };
 
 #endif // ARTOFCIRCUITS_DCMOTOR_H

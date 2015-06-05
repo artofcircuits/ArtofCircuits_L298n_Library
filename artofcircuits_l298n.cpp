@@ -37,6 +37,8 @@ L298n::L298n(uint8_t enable, uint8_t in1, uint8_t in2) {
 	_enable = enable;	
 	_in1 = in1;
 	_in2 = in2;
+	_status = L298N_DISABLED;
+	_speed = L298N_DEFAULT_SPEED;	// default speed
 	
 	// set pin modes for L298N inputs
     pinMode(enable, OUTPUT);
@@ -66,11 +68,13 @@ void L298n::breaking(void)
 	digitalWrite(_enable, HIGH);
 	digitalWrite(_in1, LOW);
 	digitalWrite(_in2, LOW);
+	_status = L298N_BREAK;
 	
 	DEBUG_PRINT("breaking()");
 	DEBUG_PRINTDEC("enable: ", _enable);
 	DEBUG_PRINTDEC("in1: ", _in1);
 	DEBUG_PRINTDEC("in2: ", _in2);
+	DEBUG_PRINTDEC("status: ", _status);
 	DEBUG_PRINT("");
 	
 }
@@ -83,6 +87,7 @@ void L298n::disable(void)
 	digitalWrite(_enable, LOW);
 	digitalWrite(_in1, LOW);
 	digitalWrite(_in2, LOW);
+	_status = L298N_DISABLED;
 }
 
 /**
@@ -93,12 +98,14 @@ void L298n::forward(uint8_t speed)
 	analogWrite(_enable, speed);
 	digitalWrite(_in1, HIGH);
 	digitalWrite(_in2, LOW);
+	_status = L298N_FORWARD;
 	
 	DEBUG_PRINT("forward()");
 	DEBUG_PRINTDEC("speed: ", speed);
 	DEBUG_PRINTDEC("enable: ", _enable);
 	DEBUG_PRINTDEC("in1: ", _in1);
 	DEBUG_PRINTDEC("in2: ", _in2);
+	DEBUG_PRINTDEC("status: ", _status);	
 	DEBUG_PRINT("");
 }
 
@@ -110,11 +117,51 @@ void L298n::backward(uint8_t speed)
 	analogWrite(_enable, speed);
 	digitalWrite(_in1, LOW);
 	digitalWrite(_in2, HIGH);
+	_status = L298N_BACKWARD;
 	
 	DEBUG_PRINT("backward()");
 	DEBUG_PRINTDEC("speed: ", speed);
 	DEBUG_PRINTDEC("enable: ", _enable);
 	DEBUG_PRINTDEC("in1: ", _in1);
 	DEBUG_PRINTDEC("in2: ", _in2);
+	DEBUG_PRINTDEC("status: ", _status);
 	DEBUG_PRINT("");
+}
+
+/**
+ * set speed
+ */
+void L298n::setSpeed(uint8_t speed)
+{
+	DEBUG_PRINT("setSpeed()");
+	_speed = speed;
+	switch (_status)
+	{
+		case L298N_DISABLED:
+		
+		break;
+
+		case L298N_BREAK:
+		
+		break;
+		
+		case L298N_FORWARD:
+		forward(_speed);
+		break;
+		
+		case L298N_BACKWARD:
+		backward(_speed);
+		break;
+		
+		default: 
+		break;		
+	}
+}
+
+/**
+ * get speed
+ */
+uint8_t L298n::getSpeed(void)
+{
+	return _speed;
 }
