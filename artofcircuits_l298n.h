@@ -39,7 +39,7 @@
 // contant for _speed variable
 #define L298N_DEFAULT_SPEED			127	// default speed
 #define L298N_MAX_SPEED				255	// max speed
-#define L298N_MAX_MIN				127	// min speed that still rotates wheel
+#define L298N_MIN_SPEED				63	// min speed that still rotates wheel
 
 // constants for reporting status
 #define L298N_DISABLED		0	// stopped or disabled state
