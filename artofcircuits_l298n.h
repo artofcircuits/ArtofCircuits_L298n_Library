@@ -1,4 +1,19 @@
 /*--------------------------------------------------------------------
+  Arduino library for L298N module
+  
+  Written by Asim Khan / Art of Circuits
+  
+  Art of Circuits is Pakistan’s popular online store that sells electronics 
+  components, boards and tools to make your electronics projects possible. 
+  Art of Circuits is located in Islamabad, and sells products across all 
+  cities of Pakistan.
+
+  Contact Info:
+  Email: asim@artofcircuits.com
+  Web:  http://artofcircuits.com
+
+  -------------------------------------------------------------------------
+  
   This file is part of the Art of Circuits L298N library.
 
   L298N library is free software: you can redistribute it and/or 
@@ -16,8 +31,8 @@
   <http://www.gnu.org/licenses/>.
   --------------------------------------------------------------------*/
 
-#ifndef ARTOFCIRCUITS_DCMOTOR_H
-#define ARTOFCIRCUITS_DCMOTOR_H
+#ifndef ARTOFCIRCUITS_L298N_H
+#define ARTOFCIRCUITS_L298N_H
 
 // Compatibility for Arduino 1.0
 #if ARDUINO >= 100

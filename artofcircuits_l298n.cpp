@@ -1,12 +1,16 @@
 /*-------------------------------------------------------------------------
   Arduino library for L298N module
   
-  Written by Asim Khan 
+  Written by Asim Khan / Art of Circuits
   
   Art of Circuits is Pakistan’s popular online store that sells electronics 
   components, boards and tools to make your electronics projects possible. 
   Art of Circuits is located in Islamabad, and sells products across all 
   cities of Pakistan.
+
+  Contact Info:
+  Email: asim@artofcircuits.com
+  Web:  http://artofcircuits.com
 
   -------------------------------------------------------------------------
   This file is part of the Art of Circuits L298N library.
